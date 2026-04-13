@@ -1,0 +1,96 @@
+# Secrets and credentials — NEVER commit these
+.env
+.env.local
+config.local.json
+**/config.local.json
+*.key
+*.pem
+device-auth.json
+
+# Personal data — do not commit
+cv_base.yaml
+state/applications_index.json
+state/follow_up_tracker.json
+state/auto_apply_queue.json
+state/application_profile.json
+state/compensation_reference.json
+state/linkedin_posts_index.json
+state/application_stage_overrides.json
+state/gmail_recruiting_index.json
+
+# Artifacts with personal data
+artifacts/applications/applied/
+artifacts/applications/blocked/
+artifacts/applications/in_progress/
+artifacts/applications/skipped/
+artifacts/applications/reviewed/
+artifacts/share/*.pdf
+artifacts/share/*.json
+artifacts/browser/
+artifacts/linkedin/
+artifacts/dashboard/*.html
+artifacts/dashboard/*.json
+artifacts/reports/
+
+# Generated CV files (contain personal data)
+output/pdf/
+output/*.pdf
+output/*.docx
+output/*.csv
+output/*.md
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+.eggs/
+.venv/
+venv/
+env/
+*.pyc
+
+# Playwright
+playwright-report/
+test-results/
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Logs
+logs/*.log
+logs/*.json
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/settings.json
+.idea/
+*.swp
+*.swo
+*~
+
+# OpenClaw session files
+*.jsonl
+sessions/
+
+# Temporary
+tmp/
+temp/
+*.tmp
+browser_probe_output.json
+
+# Real CV base (contains personal data)
+cv_base.reference.yaml
+cv-engine/cv_base.reference.yaml

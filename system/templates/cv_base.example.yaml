@@ -1,0 +1,131 @@
+# =============================================================================
+# CV Base Template — Cadence Career Ops
+# =============================================================================
+# Replace all values with your real information.
+# This file is the SINGLE SOURCE OF TRUTH for all CV generation.
+# The cv_branded_generator.py reads this to produce branded PDFs.
+# Never commit your real cv_base.yaml to version control.
+# =============================================================================
+
+profile:
+  name: "Alex Automation"
+  title: "AI Automation Engineer"
+  email: "alex@example.com"
+  phone: "+55 11 99999-9999"
+  location: "São Paulo, Brazil"
+  linkedin: "linkedin.com/in/alex-automation"
+  github: "github.com/alex-automation"
+  summary: >
+    AI automation engineer with 3+ years building production agent systems,
+    workflow automation, and data pipelines. Specialized in LLM integration,
+    browser automation, and hybrid local+cloud architectures.
+
+# Experience confirmed for use in screening questions
+# These values are used by application_guard.py to prevent false claims
+experience_confirmed:
+  ai_agents: "2 years"            # e.g., "2 years", "3 years"
+  workflow_automation: "3 years"
+  python: "4 years"
+  api_integration: "3 years"
+  cloud_infra: "2 years"
+  data_engineering: "1 year"
+  total_it: "4 years"
+
+# Compensation targets — used in Easy Apply salary questions
+compensation:
+  clt_monthly_brl: 18000          # CLT format (monthly gross)
+  pj_monthly_brl: 22000           # PJ format (monthly)
+  international_monthly_usd: 4500 # International (USD/month)
+  # Easy Apply salary fields (annual, in local currency)
+  clt_annual_brl: 216000
+  pj_annual_brl: 264000
+
+# Skills confirmed — used for fit scoring
+skills_confirmed:
+  languages: ["Python", "JavaScript", "TypeScript", "SQL"]
+  frameworks: ["FastAPI", "Node.js", "LangChain", "OpenAI SDK"]
+  automation: ["Playwright", "Selenium", "Chrome CDP", "n8n", "Make.com"]
+  ai_tools: ["OpenAI API", "Anthropic API", "Groq", "Ollama"]
+  databases: ["PostgreSQL", "SQLite", "Redis", "MongoDB"]
+  infrastructure: ["Docker", "Docker Swarm", "Linux", "WSL2"]
+  
+# Work authorization — used in Easy Apply questions
+work_authorization:
+  brazil_clt: true
+  brazil_pj: true
+  eu_work_permit: false
+  us_work_permit: false
+  willing_to_relocate: false
+  remote_preference: "remote-first"  # "remote-only", "remote-first", "hybrid", "flexible"
+
+# Work experience (for CV generation)
+experience:
+  - title: "AI Automation Engineer"
+    company: "Freelance / Independent"
+    period: "2024 - Present"
+    description: >
+      Built AI agent systems for process automation, document handling,
+      and workflow orchestration for SME clients.
+    highlights:
+      - "Deployed browser automation reducing manual processing by 85%"
+      - "Built multi-agent pipeline with LLM orchestration on hybrid infrastructure"
+      - "Created adaptive CV generation system producing 20+ branded variants"
+
+  - title: "Senior Automation Analyst"
+    company: "Previous Company"
+    period: "2021 - 2024"
+    description: >
+      Led automation initiatives across operational processes.
+    highlights:
+      - "Automated 50+ repetitive workflows using Python and n8n"
+      - "Reduced data processing time from 8 hours to 45 minutes"
+      - "Trained team of 3 in automation best practices"
+
+# Education
+education:
+  - degree: "Bachelor's in Information Systems"
+    institution: "University Name"
+    year: 2020
+    relevant_courses: ["Data Structures", "Systems Analysis", "Project Management"]
+
+# Languages
+languages:
+  - language: "Portuguese"
+    level: "Native"
+  - language: "English"
+    level: "Fluent (B2/C1)"
+
+# CV generation presets
+# Each preset defines which sections to include and how to format them
+presets:
+  clt-ptbr:
+    language: "pt-BR"
+    max_pages: 2
+    format: "traditional"
+    focus: ["automation", "workflow", "python"]
+    compensation_display: "clt_monthly_brl"
+    target_roles: ["Analista de Automação", "Engenheiro de IA", "Desenvolvedor Python"]
+
+  master-en:
+    language: "en"
+    max_pages: 2
+    format: "modern"
+    focus: ["all"]
+    compensation_display: "international_monthly_usd"
+    target_roles: ["AI Automation Engineer", "AI Agent Developer", "Python Engineer"]
+
+  master-ptbr:
+    language: "pt-BR"
+    max_pages: 2
+    format: "modern"
+    focus: ["all"]
+    compensation_display: "clt_monthly_brl"
+    target_roles: ["Engenheiro de Automação IA", "Desenvolvedor de Agentes IA"]
+
+  upwork-en:
+    language: "en"
+    max_pages: 1
+    format: "compact"
+    focus: ["freelance", "ai_automation", "results"]
+    compensation_display: "international_monthly_usd"
+    target_roles: ["AI Automation Specialist", "Python Automation Expert"]

@@ -1,0 +1,45 @@
+{
+  "_comment": "VPS OpenClaw configuration template — copy to /root/.openclaw/openclaw.json on your VPS",
+  "gateway": {
+    "host": "0.0.0.0",
+    "port": 18789,
+    "token": "YOUR_VPS_GATEWAY_TOKEN",
+    "public_url": "wss://openclaw.yourdomain.com"
+  },
+  "agents": [
+    {
+      "id": "cadence-vps",
+      "displayName": "Cadence VPS",
+      "workspace": "/root/.openclaw/workspace-vps",
+      "model": "groq/llama-3.3-70b-versatile"
+    }
+  ],
+  "models": {
+    "primary": "groq/llama-3.3-70b-versatile",
+    "fallback": [
+      "openrouter/qwen/qwen-2.5-72b-instruct",
+      "openrouter/meta-llama/llama-3.3-70b-instruct"
+    ]
+  },
+  "api_keys": {
+    "groq": "YOUR_GROQ_API_KEY",
+    "openrouter": "YOUR_OPENROUTER_API_KEY"
+  },
+  "telegram": {
+    "bots": [
+      {
+        "name": "cadence-vps",
+        "token": "YOUR_VPS_BOT_TOKEN",
+        "chat_id": "YOUR_CHAT_ID"
+      }
+    ]
+  },
+  "database": {
+    "postgres_url": "postgresql://cadence:YOUR_PASSWORD@localhost:5432/career_tracker",
+    "redis_url": "redis://localhost:6379"
+  },
+  "n8n": {
+    "webhook_base": "https://n8n.yourdomain.com/webhook",
+    "api_key": "YOUR_N8N_API_KEY"
+  }
+}

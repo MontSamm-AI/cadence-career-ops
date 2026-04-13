@@ -1,0 +1,154 @@
+{
+  "_comment": "OpenClaw configuration template for Cadence Career Ops. Copy to ~/.openclaw/openclaw.json and fill in your values.",
+  "_instructions": [
+    "1. Replace all YOUR_* placeholders with real values",
+    "2. Set up LLM providers in the models section",
+    "3. Configure Telegram bot tokens for notifications",
+    "4. Set browser CDP URL if different from default"
+  ],
+  "agents": {
+    "defaults": {
+      "workspace": "/home/YOUR_USERNAME/.openclaw/workspace",
+      "models": {
+        "claude-cli/claude-sonnet-4-6": {},
+        "groq/llama-3.3-70b-versatile": {
+          "alias": "groq-fast"
+        },
+        "openrouter/google/gemini-2.5-flash-preview": {
+          "alias": "or-gemini-flash"
+        },
+        "openrouter/qwen/qwen3-235b-a22b:free": {
+          "alias": "or-qwen-free"
+        }
+      },
+      "model": {
+        "primary": "claude-cli/claude-sonnet-4-6",
+        "fallbacks": [
+          "groq/llama-3.3-70b-versatile",
+          "openrouter/qwen/qwen3-235b-a22b:free"
+        ]
+      }
+    },
+    "list": [
+      {
+        "id": "main",
+        "model": "claude-cli/claude-sonnet-4-6",
+        "tools": {
+          "profile": "full",
+          "alsoAllow": ["browser", "canvas", "message", "gateway", "nodes", "agents_list"]
+        }
+      },
+      {
+        "id": "cadence-profissional",
+        "name": "cadence-profissional",
+        "workspace": "/home/YOUR_USERNAME/.openclaw/workspace-linkedin",
+        "model": "claude-cli/claude-sonnet-4-6",
+        "identity": {
+          "name": "Cadence Profissional",
+          "theme": "forest",
+          "emoji": "🎯"
+        },
+        "tools": {
+          "profile": "full",
+          "alsoAllow": ["browser", "canvas", "message", "gateway", "nodes", "agents_list"]
+        }
+      }
+    ]
+  },
+  "gateway": {
+    "mode": "local",
+    "auth": {
+      "mode": "token",
+      "token": "YOUR_GATEWAY_TOKEN_CHANGE_THIS"
+    },
+    "port": 18789,
+    "bind": "loopback",
+    "nodes": {
+      "browser": {
+        "node": "windows-chrome"
+      }
+    }
+  },
+  "session": {
+    "dmScope": "per-channel-peer"
+  },
+  "tools": {
+    "profile": "coding",
+    "web": {
+      "search": {
+        "provider": "duckduckgo",
+        "enabled": true
+      },
+      "fetch": {
+        "enabled": true
+      }
+    }
+  },
+  "models": {
+    "providers": {
+      "anthropic": {
+        "baseUrl": "https://api.anthropic.com",
+        "apiKey": "YOUR_ANTHROPIC_API_KEY",
+        "models": []
+      },
+      "groq": {
+        "baseUrl": "https://api.groq.com/openai/v1",
+        "apiKey": "YOUR_GROQ_API_KEY",
+        "models": []
+      },
+      "openrouter": {
+        "baseUrl": "https://openrouter.ai/api/v1",
+        "apiKey": "YOUR_OPENROUTER_API_KEY",
+        "models": []
+      }
+    }
+  },
+  "channels": {
+    "telegram": {
+      "enabled": true,
+      "defaultAccount": "default",
+      "accounts": {
+        "default": {
+          "botToken": "YOUR_TELEGRAM_BOT_TOKEN_FOR_MAIN_AGENT"
+        },
+        "cadence-local": {
+          "botToken": "YOUR_TELEGRAM_BOT_TOKEN_FOR_CADENCE_AGENT"
+        }
+      }
+    }
+  },
+  "browser": {
+    "defaultProfile": "user",
+    "profiles": {
+      "user": {
+        "cdpUrl": "http://127.0.0.1:9222",
+        "color": "#2563eb"
+      }
+    }
+  },
+  "bindings": [
+    {
+      "type": "route",
+      "agentId": "cadence-profissional",
+      "match": {
+        "channel": "telegram",
+        "accountId": "default"
+      }
+    },
+    {
+      "type": "route",
+      "agentId": "main",
+      "match": {
+        "channel": "telegram",
+        "accountId": "cadence-local"
+      }
+    }
+  ],
+  "update": {
+    "auto": {
+      "enabled": true
+    },
+    "checkOnStart": true,
+    "channel": "stable"
+  }
+}

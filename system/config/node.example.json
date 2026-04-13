@@ -1,0 +1,14 @@
+{
+  "_comment": "Windows OpenClaw node configuration — copy to C:\\Users\\[USERNAME]\\.openclaw\\node.json",
+  "nodeId": "generate-with-uuidgen",
+  "displayName": "windows-chrome",
+  "gateway": {
+    "host": "127.0.0.1",
+    "port": 18789
+  },
+  "capabilities": ["browser", "cdp"],
+  "browser": {
+    "cdp_port": 9222,
+    "cdp_host": "localhost"
+  }
+}

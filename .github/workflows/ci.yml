@@ -1,0 +1,85 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install flake8 pytest
+        # Install only non-browser dependencies for CI
+        pip install jinja2 requests
+
+    - name: Lint with flake8
+      run: |
+        # Stop on syntax errors and undefined names
+        flake8 scripts/skills/ cv-engine/ --count --select=E9,F63,F7,F82 --show-source --statistics
+        # Style warnings (non-blocking)
+        flake8 scripts/skills/ cv-engine/ --count --exit-zero --max-complexity=15 --max-line-length=120 --statistics
+
+    - name: Test core utilities (no browser required)
+      run: |
+        python -c "
+        import sys
+        sys.path.insert(0, 'scripts/skills')
+        
+        # Test application_guard logic (no browser, no file I/O needed for core logic)
+        from application_guard import validate_application, SCORE_MINIMUM_APPLY, MAX_APPLICATIONS_PER_DAY
+        
+        # Test score gate
+        result = validate_application(score=30, title='AI Automation Engineer', company='TestCo')
+        assert not result.passed, 'Low score should block'
+        assert any('Score' in b for b in result.blocks), 'Should have score block reason'
+        
+        # Test blocked title
+        result = validate_application(score=80, title='QA Automation Engineer', company='TestCo')
+        assert not result.passed, 'Blocked title should block'
+        
+        print('application_guard: all tests passed')
+        "
+
+    - name: Test compensation logic (no browser required)
+      run: |
+        python -c "
+        import sys, json, tempfile, os
+        sys.path.insert(0, 'scripts/skills')
+
+        # Minimal compensation reference for testing
+        comp_data = {
+          'tracks': {
+            'br_clt': {'default': 15000, 'annual_multiplier': 13.33, 'hourly_default': 90, 'daily_default': 720},
+            'international_remote': {'default': 3500, 'annual_multiplier': 12, 'hourly_default': 22, 'daily_default': 175}
+          },
+          'role_families': {},
+          'seniority_modifiers': {'base': 1.0, 'senior': 1.12},
+          'job_overrides': {}
+        }
+        from auto_apply_lib import CompensationReference
+        comp = CompensationReference(comp_data)
+        
+        job = {'role': 'AI Automation Engineer', 'location': 'Brazil'}
+        result = comp.compensation_answer(job, 'pretensão salarial')
+        assert result['track'] == 'br_clt', f'Expected br_clt, got {result[\"track\"]}'
+        assert result['amount'] == 15000.0, f'Expected 15000, got {result[\"amount\"]}'
+        
+        job_int = {'role': 'AI Engineer', 'location': 'Remote worldwide'}
+        result_int = comp.compensation_answer(job_int, 'expected salary USD')
+        assert result_int['track'] == 'international_remote', f'Expected international_remote, got {result_int[\"track\"]}'
+        
+        print('compensation logic: all tests passed')
+        "
