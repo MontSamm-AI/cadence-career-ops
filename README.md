@@ -13,7 +13,7 @@ Built on the [OpenClaw](https://openclaw.dev) agent framework. Operates a real b
 
 ## What This Is
 
-A **full-stack career operations pipeline** — not a toy demo or a spam bot. It is a production system built and operated by [Sami Monteleone](https://linkedin.com/in/sami-monteleone) to solve the real problem of managing a high-signal, high-velocity job search with precision and auditability.
+A **full-stack career operations pipeline** — not a toy demo or a spam bot. It is a production system built and operated by [Sami Monteleone](https://www.linkedin.com/in/samimonteleone) to solve the real problem of managing a high-signal, high-velocity job search with precision and auditability.
 
 ```
 ┌─────────────────────────────────────────────────────────────────────┐
