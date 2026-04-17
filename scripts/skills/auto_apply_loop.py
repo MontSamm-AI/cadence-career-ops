@@ -1,16 +1,14 @@
-#!/home/monts/.venv/jobhunter/bin/python
+#!/usr/bin/env python3
 from __future__ import annotations
 
 import argparse
 import json
 import subprocess
 import sys
-from pathlib import Path
-
 from auto_apply_lib import WORKSPACE, load_queue, load_rules
 
 PY = sys.executable
-SKILLS = WORKSPACE / 'skills'
+SKILLS = WORKSPACE / 'scripts' / 'skills'
 
 
 def run_cmd(args):

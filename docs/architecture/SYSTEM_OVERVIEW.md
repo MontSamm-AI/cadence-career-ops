@@ -77,7 +77,7 @@ OpenClaw is the agent runtime. It provides:
 - Multi-agent coordination
 
 **Agent: `cadence-profissional`**
-- Workspace: `/home/monts/.openclaw/workspace-linkedin`
+- Workspace: `/path/to/workspace-linkedin`
 - Identity: "Cadence Profissional" — career operations specialist
 - Primary channel: Telegram bot (@cadence_profissional_bot)
 - Tools: browser (CDP), exec, read/write, message, canvas
@@ -150,15 +150,15 @@ output/pdf/
 | `traefik` | Reverse proxy + TLS | (internal) |
 | `postgres` | Career CRM + all app data | postgres:5432 (internal) |
 | `redis` | Cache and queues | redis:6379 (internal) |
-| `n8n_editor` | Workflow automation | n8n.montsam.site |
+| `n8n_editor` | Workflow automation | n8n.example.com |
 | `n8n-workers` | Workflow execution | (internal) |
-| `openclaw_gateway` | VPS agent runtime | openclaw.montsam.site |
-| `portainer` | Container management | painel.montsam.site |
-| `evolution` | WhatsApp API | evo.montsam.site |
-| `paperclip` | Document management | paperclip.montsam.site |
-| `pgadmin` | DB admin interface | pg.montsam.site |
-| `redisinsight` | Redis management | redis.montsam.site |
-| `alianca_api` | Custom FastAPI backend | alianca.montsam.site |
+| `openclaw_gateway` | VPS agent runtime | openclaw.example.com |
+| `portainer` | Container management | portainer.example.com |
+| `evolution` | WhatsApp API | evolution.example.com |
+| `paperclip` | Document management | paperclip.example.com |
+| `pgadmin` | DB admin interface | pgadmin.example.com |
+| `redisinsight` | Redis management | redis.example.com |
+| `alianca_api` | Custom FastAPI backend | api.example.com |
 
 ---
 

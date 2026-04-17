@@ -1,4 +1,4 @@
-#!/home/monts/.venv/jobhunter/bin/python
+#!/usr/bin/env python3
 import json
 from pathlib import Path
 from datetime import datetime
@@ -6,7 +6,7 @@ from playwright.sync_api import sync_playwright
 
 CDP_URL = 'http://127.0.0.1:9222'
 URL = 'https://www.hubxp.com.br/vagas/114'
-OUTDIR = Path('/home/monts/.openclaw/workspace-linkedin/artifacts/applications/pending')
+OUTDIR = Path(__file__).resolve().parents[2] / 'artifacts' / 'applications' / 'pending'
 OUTDIR.mkdir(parents=True, exist_ok=True)
 ts = datetime.now().strftime('%Y%m%d_%H%M%S')
 out = OUTDIR / f'hubxp_wait_probe_{ts}.json'

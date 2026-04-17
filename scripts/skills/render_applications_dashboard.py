@@ -1,4 +1,4 @@
-#!/home/monts/.venv/jobhunter/bin/python
+#!/usr/bin/env python3
 from __future__ import annotations
 
 import json
@@ -7,7 +7,7 @@ from datetime import datetime, timedelta
 from html import escape
 from pathlib import Path
 
-WORKSPACE = Path('/home/monts/.openclaw/workspace-linkedin')
+WORKSPACE = Path(__file__).resolve().parents[2]
 STATE = WORKSPACE / 'state'
 ARTIFACTS = WORKSPACE / 'artifacts' / 'applications'
 DASHBOARD_DIR = WORKSPACE / 'artifacts' / 'dashboard'

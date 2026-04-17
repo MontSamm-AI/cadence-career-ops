@@ -1,21 +1,22 @@
-#!/home/monts/.venv/jobhunter/bin/python
+#!/usr/bin/env python3
 import json
+import os
 from pathlib import Path
 from datetime import datetime
 from playwright.sync_api import sync_playwright
 
 CDP_URL = 'http://127.0.0.1:9222'
 URL = 'https://cpqd.recruitee.com/o/pesquisadora-ii-foco-em-inteligencia-artificial?source=LinkedIn'
-WORKSPACE = Path('/home/monts/.openclaw/workspace-linkedin')
+WORKSPACE = Path(__file__).resolve().parents[2]
 OUTDIR = WORKSPACE / 'artifacts' / 'applications' / 'reviewed'
 OUTDIR.mkdir(parents=True, exist_ok=True)
 ts = datetime.now().strftime('%Y%m%d_%H%M%S')
 out = OUTDIR / f'cpqd_ii_prepare_{ts}.json'
 
-NAME = 'Sami Monteleone'
-EMAIL = 'monteleone.w1@gmail.com'
-PHONE = '+55 19 98100-5715'
-CV_PATH = '/mnt/c/Users/monts/OneDrive/Documentos/Projects/Pessoal/linkedin/sistema/output/pdf/CV_SamiMonteleone_clt-ptbr_pesquisadora-ii-em-inteligência-artificial_20260407.pdf'
+NAME = os.environ.get('CADENCE_CANDIDATE_NAME', 'Candidate Name')
+EMAIL = os.environ.get('CADENCE_CANDIDATE_EMAIL', 'candidate@example.com')
+PHONE = os.environ.get('CADENCE_CANDIDATE_PHONE', '+55 11 90000-0000')
+CV_PATH = os.environ.get('CADENCE_CV_PATH', '/path/to/cv.pdf')
 
 result = {
     'timestamp': datetime.now().isoformat(),
@@ -48,8 +49,12 @@ with sync_playwright() as p:
 
     # Upload CV if possible
     try:
-        page.locator("input[name='candidate.cv']").set_input_files(CV_PATH)
-        result['filled'].append({'selector': "input[name='candidate.cv']", 'value': CV_PATH})
+        cv_file = Path(CV_PATH)
+        if cv_file.exists():
+            page.locator("input[name='candidate.cv']").set_input_files(str(cv_file))
+            result['filled'].append({'selector': "input[name='candidate.cv']", 'value': str(cv_file)})
+        else:
+            result['filled'].append({'selector': "input[name='candidate.cv']", 'error': 'CV path not configured or file not found'})
     except Exception as e:
         result['filled'].append({'selector': "input[name='candidate.cv']", 'error': str(e)})
 

@@ -1,4 +1,4 @@
-#!/home/monts/.venv/jobhunter/bin/python
+#!/usr/bin/env python3
 import json
 from pathlib import Path
 from datetime import datetime
@@ -6,7 +6,7 @@ from playwright.sync_api import sync_playwright
 
 CDP_URL = 'http://127.0.0.1:9222'
 TARGET_URL = 'https://www.hubxp.com.br/vagas/114'
-WORKSPACE = Path('/home/monts/.openclaw/workspace-linkedin')
+WORKSPACE = Path(__file__).resolve().parents[2]
 ART = WORKSPACE / 'artifacts' / 'applications' / 'pending'
 ART.mkdir(parents=True, exist_ok=True)
 

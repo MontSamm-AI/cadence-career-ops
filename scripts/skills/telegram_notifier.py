@@ -13,7 +13,7 @@ Uso:
 
 Config:
     Definir TELEGRAM_BOT_TOKEN e TELEGRAM_CHAT_ID como variáveis de ambiente
-    OU criar /home/monts/.openclaw/workspace-linkedin/config.json com:
+    OU criar `config.local.json` na raiz do repositório com:
     {
         "telegram_bot_token": "TOKEN_AQUI",
         "telegram_chat_id": "CHAT_ID_AQUI"
@@ -29,7 +29,7 @@ import urllib.parse
 from datetime import datetime
 from pathlib import Path
 
-WORKSPACE = Path(__file__).parent.parent
+WORKSPACE = Path(__file__).resolve().parents[2]
 CONFIG_PATH = WORKSPACE / "config.json"
 CONFIG_LOCAL_PATH = WORKSPACE / "config.local.json"
 ENV_LOCAL_PATH = WORKSPACE / ".env.local"
@@ -158,8 +158,8 @@ def format_health_check(results: dict) -> str:
         "",
         f"{icon(results.get('cdp'))} Chrome CDP (127.0.0.1:9222)",
         f"{icon(results.get('venv'))} Python venv jobhunter",
-        f"{icon(results.get('vps'))} VPS montsam.site",
-        f"{icon(results.get('n8n'))} n8n.montsam.site",
+        f"{icon(results.get('vps'))} VPS host",
+        f"{icon(results.get('n8n'))} n8n host",
         f"{icon(results.get('linkedin'))} LinkedIn logado",
     ]
     all_ok = all(results.values())

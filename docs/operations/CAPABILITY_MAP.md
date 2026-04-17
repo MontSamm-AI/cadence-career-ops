@@ -169,7 +169,7 @@ The full Easy Apply flow has been proven in live applications:
 
 - Current dashboard reads local JSON
 - Target: VPS-hosted dashboard backed by canonical Postgres state
-- Accessible at `dashboard.montsam.site`
+- Accessible at `dashboard.example.com`
 
 ### 3.4 Automated Follow-up
 

@@ -202,8 +202,8 @@ Full roadmap: [ROADMAP.md](./planning/ROADMAP.md)
 **Sami Monteleone** — Applied AI automation engineer, agent builder, workflow architect.
 
 - 🔗 [LinkedIn](https://linkedin.com/in/sami-monteleone)
-- 📧 samisaulomonteleone@gmail.com
-- 🌍 São Paulo, Brazil | Open to remote international roles
+- 💬 Public contact: LinkedIn DM / GitHub Issues
+- 🌍 Brazil | Open to remote international roles
 
 > This project is a live portfolio artifact — it demonstrates applied AI engineering, browser automation, agent orchestration, hybrid infrastructure, and production-grade Python, all in a real operational context.
 

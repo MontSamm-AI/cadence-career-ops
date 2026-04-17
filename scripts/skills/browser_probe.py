@@ -1,10 +1,11 @@
-#!/home/monts/.venv/jobhunter/bin/python
+#!/usr/bin/env python3
 import json
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 
 CDP_URL = 'http://127.0.0.1:9222'
-OUT = Path('/home/monts/.openclaw/workspace-linkedin/browser_probe_output.json')
+REPO_ROOT = Path(__file__).resolve().parents[2]
+OUT = REPO_ROOT / 'browser_probe_output.json'
 
 result = {
     'cdp_url': CDP_URL,

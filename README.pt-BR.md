@@ -165,8 +165,8 @@ Detalhes: [RESULTS.md](./docs/showcase/RESULTS.md)
 **Sami Monteleone** — Engenheira de automação de IA aplicada, construtora de agentes, arquiteta de workflows.
 
 - 🔗 [LinkedIn](https://linkedin.com/in/sami-monteleone)
-- 📧 samisaulomonteleone@gmail.com
-- 🌍 São Paulo, Brasil | Aberta a posições remotas internacionais
+- 💬 Contato público: LinkedIn / Issues no GitHub
+- 🌍 Brasil | Aberta a posições remotas internacionais
 
 > Este projeto é um artefato de portfólio vivo — demonstra engenharia de IA aplicada, automação de browser, orquestração de agentes, infraestrutura híbrida e Python em nível de produção, tudo em um contexto operacional real.
 

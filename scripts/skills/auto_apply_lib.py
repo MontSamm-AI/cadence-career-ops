@@ -1,4 +1,4 @@
-#!/home/monts/.venv/jobhunter/bin/python
+#!/usr/bin/env python3
 """Utilitários compartilhados para o pipeline LinkedIn Easy Apply.
 Cadence Profissional · 2026-04-09
 """
@@ -11,7 +11,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
-WORKSPACE = Path("/home/monts/.openclaw/workspace-linkedin")
+WORKSPACE = Path(__file__).resolve().parents[2]
 STATE_DIR = WORKSPACE / "state"
 ARTIFACTS_DIR = WORKSPACE / "artifacts" / "applications"
 BROWSER_DIR = WORKSPACE / "artifacts" / "browser"

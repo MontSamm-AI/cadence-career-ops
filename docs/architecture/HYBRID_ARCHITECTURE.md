@@ -66,12 +66,12 @@ The VPS cannot own the browser. The browser must live on the local machine.
 | Service | URL | Purpose |
 |---|---|---|
 | Traefik | Automatic | Reverse proxy + SSL |
-| n8n | n8n.montsam.site | Workflow orchestration |
+| n8n | n8n.example.com | Workflow orchestration |
 | PostgreSQL | Internal | Primary CRM database |
 | Redis | Internal | Cache + pub/sub |
-| Evolution API | evolution.montsam.site | WhatsApp automation |
-| OpenClaw VPS | openclaw.montsam.site | VPS agent gateway |
-| Portainer | portainer.montsam.site | Container management |
+| Evolution API | evolution.example.com | WhatsApp automation |
+| OpenClaw VPS | openclaw.example.com | VPS agent gateway |
+| Portainer | portainer.example.com | Container management |
 
 ## OpenClaw Gateway
 
@@ -80,7 +80,7 @@ Both environments run an OpenClaw instance with their own gateway:
 | Environment | Gateway |
 |---|---|
 | Local (WSL) | ws://127.0.0.1:18789 |
-| VPS | wss://openclaw.montsam.site |
+| VPS | wss://openclaw.example.com |
 
 Agents register with their local gateway. The `windows-chrome` node on Windows also registers with the WSL gateway, making Chrome available to WSL agents.
 
